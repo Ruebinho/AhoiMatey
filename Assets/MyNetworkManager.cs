@@ -29,11 +29,18 @@ public class MyNetworkManager : NetworkManager {
     public override void OnStartClient(NetworkClient myNetClient)
     {
         Debug.Log(Time.timeSinceLevelLoad + " Client start requested" );
+        InvokeRepeating("PrintDots", 0f, 1f);
     }
 
     public override void OnClientConnect(NetworkConnection conn)
     {
         //base.OnClientConnect(conn);
         Debug.Log(Time.timeSinceLevelLoad + " Client connected to IP: " + conn.address);
+        CancelInvoke();
+    }
+
+    void PrintConnectingMessage()
+    {
+        Debug.Log(".:connecting:.");
     }
 }
